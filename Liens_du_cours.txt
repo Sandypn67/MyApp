@@ -1,0 +1,25 @@
+Objectifs du TD :
+
+
+
+Installation de son environnement de travail Android Studio & Git
+
+
+
+Prise en main de Android Studio 
+
+
+
+Lien des slides : https://docs.google.com/presentation/d/13CBQEt7lMj0IBils_y9FEZ87bIrYZLuVBzqz1VpRmaw/edit?usp=sharing
+
+
+
+Lien vidéo : https://youtu.be/PfF6UmXKUBE
+
+
+
+Lien Codelab : https://codelabs.developers.google.com/codelabs/build-your-first-android-app/#0
+
+
+
+Lien Playlist 3A 2020 : https://www.youtube.com/playlist?list=PLFXfdx9emMb6HNYQ2dvix2LqCC6UMeux8
