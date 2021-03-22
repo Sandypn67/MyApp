@@ -14,6 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
@@ -55,7 +56,7 @@ class PokemonListFragment : Fragment() {
             override fun onResponse(call: Call<PokemonResponse>, response: Response<PokemonResponse>) {
                 if(response.isSuccessful && response.body()!= null ){
                     val pokemonResponse = response.body()!!
-                    adapter.updateList(pokemonResponse.result)
+                    adapter.updateList(pokemonResponse.results)
                 }
             }
         })
