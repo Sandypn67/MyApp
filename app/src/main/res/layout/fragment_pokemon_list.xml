@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.list.PokemonListFragment"
-    android:background="@color/screenBackground">
+    android:background="@color/screenBackground"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pokemon_recyclerview"
