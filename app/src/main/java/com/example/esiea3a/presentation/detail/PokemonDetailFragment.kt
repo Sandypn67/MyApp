@@ -18,6 +18,7 @@ import retrofit2.Response
 class PokemonDetailFragment : Fragment() {
 
     private lateinit var TextViewName : TextView
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -35,7 +36,8 @@ class PokemonDetailFragment : Fragment() {
         }
 
     private fun callApi() {
-        Singleton.pokeApi.getPokemonDetail("1").enqueue(object : Callback<PokemonDetailResponse> {
+        val id = arguments?.getInt("pokemonId") ?: -1
+        Singleton.pokeApi.getPokemonDetail(id).enqueue(object : Callback<PokemonDetailResponse> {
             override fun onFailure(call: Call<PokemonDetailResponse>, t: Throwable) {
             }
 
