@@ -1,5 +1,7 @@
 package com.example.esiea3a.presentation.list
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +30,9 @@ class PokemonListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private val adapter = PokemonAdapter(listOf(), ::onClickedPokemon)
 
+    //methode pour faire du cache mais pas utilisée ici
+    //private val sharedPref : SharedPreferences? = activity?.getSharedPreferences("app", Context.MODE_PRIVATE)
+
     private val layoutManager = LinearLayoutManager(context)
 
     override fun onCreateView(
@@ -47,25 +52,51 @@ class PokemonListFragment : Fragment() {
             adapter =this@PokemonListFragment.adapter
         }
 
+//        val list = getListFromCache()
+//        if(list.isEmpty()){
+//            callApi();
+//        }
+//        else{
+//            showList(list)
+//        }
+//
+//    }
+//
+//    private fun getListFromCache(): List<Pokemon> {
+//        //le reste de la methode à appeler pour faire du cache
+//        //  sharedPref.
+//        TODO("Not yet implemented")
+//    }
+//    private fun saveListIntoCache() {
+//        TODO("Not yet implemented")
+//    }
 
-        Singleton.pokeApi.getPokemonList().enqueue(object : Callback<PokemonListResponse>{
+  //  private fun callApi() {
+        Singleton.pokeApi.getPokemonList().enqueue(object : Callback<PokemonListResponse> {
             override fun onFailure(call: Call<PokemonListResponse>, t: Throwable) {
                 TODO("Not yet implemented")
             }
+
             override fun onResponse(call: Call<PokemonListResponse>, response: Response<PokemonListResponse>) {
-                if(response.isSuccessful && response.body()!= null ){
+                if (response.isSuccessful && response.body() != null) {
                     val pokemonResponse = response.body()!!
                     adapter.updateList(pokemonResponse.results)
+//                    saveListIntoCache()
+//                    showList(pokemonResponse.results)
                 }
             }
         })
 
-//        val pokeList = arrayListOf<Pokemon>().apply {
-//            add(Pokemon("Pikachu"))
-//            add(Pokemon("Salamèche"))
-//            add(Pokemon("Carapuce"))
-//            add(Pokemon("Bulbizarre"))
-//        }
+        //        val pokeList = arrayListOf<Pokemon>().apply {
+        //            add(Pokemon("Pikachu"))
+        //            add(Pokemon("Salamèche"))
+        //            add(Pokemon("Carapuce"))
+        //            add(Pokemon("Bulbizarre"))
+        //        }
+    }
+
+    private fun showList(pokeList: List<Pokemon>) {
+        adapter.updateList(pokeList)
     }
     private fun onClickedPokemon(id: Int) {
         findNavController().navigate(R.id.navigateToPokemonDetailFragment, bundleOf("pokemonId" to (id+1)))
