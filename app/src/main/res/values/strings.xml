@@ -14,4 +14,5 @@
     <string name="count_button_test">Count</string>
     <string name="Sum">0</string>
     <string name="count">Count</string>
+    <string name="error_generic">Oops, I did it again. I play with your heart !</string>
 </resources>
