@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +33,9 @@ class PokemonListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private val adapter = PokemonAdapter(listOf(), ::onClickedPokemon)
 
+    private val viewModel: PokemonListViewModel by viewModels()
+
+
     //methode pour faire du cache mais pas utilisée ici
     //private val sharedPref : SharedPreferences? = activity?.getSharedPreferences("app", Context.MODE_PRIVATE)
 
@@ -51,6 +57,9 @@ class PokemonListFragment : Fragment() {
             layoutManager = this@PokemonListFragment.layoutManager
             adapter =this@PokemonListFragment.adapter
         }
+        viewModel.pokeList.observe(viewLifecycleOwner, Observer { list ->
+            adapter.updateList(list)
+        })
 
 //        val list = getListFromCache()
 //        if(list.isEmpty()){
@@ -72,20 +81,20 @@ class PokemonListFragment : Fragment() {
 //    }
 
   //  private fun callApi() {
-        Singleton.pokeApi.getPokemonList().enqueue(object : Callback<PokemonListResponse> {
-            override fun onFailure(call: Call<PokemonListResponse>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onResponse(call: Call<PokemonListResponse>, response: Response<PokemonListResponse>) {
-                if (response.isSuccessful && response.body() != null) {
-                    val pokemonResponse = response.body()!!
-                    adapter.updateList(pokemonResponse.results)
-//                    saveListIntoCache()
-//                    showList(pokemonResponse.results)
-                }
-            }
-        })
+//        Singleton.pokeApi.getPokemonList().enqueue(object : Callback<PokemonListResponse> {
+//            override fun onFailure(call: Call<PokemonListResponse>, t: Throwable) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onResponse(call: Call<PokemonListResponse>, response: Response<PokemonListResponse>) {
+//                if (response.isSuccessful && response.body() != null) {
+//                    val pokemonResponse = response.body()!!
+//                    adapter.updateList(pokemonResponse.results)
+////                    saveListIntoCache()
+////                    showList(pokemonResponse.results)
+//                }
+//            }
+//        })
 
         //        val pokeList = arrayListOf<Pokemon>().apply {
         //            add(Pokemon("Pikachu"))
