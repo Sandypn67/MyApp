@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.radarpop.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:icon="@drawable/parametres"
+        android:title="Paramètres"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/favourite"
+        android:orderInCategory="100"
+        android:icon="@drawable/heart"
+        android:title="Favoris"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/infos"
+        android:orderInCategory="100"
+        android:icon="@drawable/info"
+        android:title="Infos"
+        app:showAsAction="ifRoom" />
+
+</menu>
